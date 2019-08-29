@@ -25,4 +25,6 @@
     <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="vins_to_vicon" args="3.413 -2.578 -1.205 -0.047 -0.593 0.798 -0.095 JA01 camera" /> -->
     <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="vins_to_vicon" args="3.9793766429579405 -0.8178264161059747 -1.9891095280386129 -0.41729267 0.43851496 -0.60220991 0.52049465 world vins_world" />  -->
     <!-- <node pkg="tf" type="static_transform_publisher" name="vins_to_vicon" args="4.302590459631403 1.127336316701561 -0.7546286690977129 -0.21596568  0.00469071 -0.22609644  0.94985116 world vins_world 10" /> -->
+
+    
 </launch>   
