@@ -1,0 +1,129 @@
+%YAML:1.0
+
+#common parameters
+#support: 1 imu 1 cam; 1 imu 2 cam: 2 cam; 
+imu: 1     
+num_of_cam: 2  
+
+imu_topic: "/camera_t265/imu"
+image0_topic: "/camera_t265/fisheye1/image_raw"
+image1_topic: "/camera_t265/fisheye2/image_raw"
+output_path: "/home/swarm/catkin_ws/src/VINS-Fusion/config/realsense_t265/output"
+
+cam0_calib: "left_kalibr_pinholeradtan.yaml"
+cam1_calib: "right_kalibr_pinholeradtan.yaml"
+image_width: 848
+image_height: 800
+   
+
+# Extrinsic parameter between IMU and Camera.
+estimate_extrinsic: 1   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
+                        # 1  Have an initial guess about extrinsic parameters. We will optimize around your initial guess.
+
+# ds-none extrinsics
+# body_T_cam0: !!opencv-matrix
+#    rows: 4
+#    cols: 4
+#    dt: d
+#    data: [-0.02751868, -0.01328395,  0.99953302,  0.00627732,
+#           0.99889238, -0.03854375,  0.02698879,  0.01218239,
+#           0.03816723,  0.99916861,  0.01432991, -0.00109283, 
+#           0.,          0.,          0.,          1.        ]
+
+# body_T_cam1: !!opencv-matrix
+#    rows: 4
+#    cols: 4
+#    dt: d
+#    data: [-0.02587543, -0.01034496,  0.99961165,  0.00463668,
+#           0.99901953, -0.03620049,  0.02548546,  0.0749343,
+#           0.03592279,  0.999291,    0.01127152,  0.00134249,
+#           0.,          0.,          0.,          1.        ]
+                        
+# extrinsics of omni-radtan
+# body_T_cam0: !!opencv-matrix
+#    rows: 4
+#    cols: 4
+#    dt: d
+#    data: [-0.0121816, -0.01871119,  0.99975072,  0.00497712,
+#           0.99936685, -0.03365355,  0.01154715,  0.00757151,
+#           0.0334291,   0.99925839,  0.0191093,   0.00344841, 
+#           0.0,          0.0,          0.0,          1.0]
+
+# body_T_cam1: !!opencv-matrix
+#    rows: 4
+#    cols: 4
+#    dt: d
+#    data: [ -0.00938735, -0.01588944,  0.99982969,  0.00433988,
+#             0.99948411, -0.03086118,  0.00889365,  0.0702768,
+#             0.03071461,  0.99939738,  0.01617095,  0.00558716,
+#             0.0,          0.0,          0.0,          1.0]
+
+# Kalibr Pinhole-radtan extrinsicss
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [-0.07799708, -0.03378934,  0.99638082, -0.04152422,
+           0.99636534, -0.03696951,  0.07674216, -0.01993272,
+           0.03424264,  0.99874498,  0.03655004, -0.01957067, 
+           0., 0., 0., 1. ]
+
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ -0.0301924,  -0.0286998,   0.99913199, -0.04652043,
+            0.99897905, -0.03447252,  0.02919756,  0.04230147,
+            0.03360464,  0.99899348,  0.02971131, -0.01738604,
+            0., 0., 0., 1. ]
+
+
+# body_T_cam0: !!opencv-matrix
+#    rows: 4
+#    cols: 4
+#    dt: d
+#    data: [ -1, 0, 0, 0.016,
+#             0, -1, 0, 0,
+#             0, 0, 1, 0, 0., 0., 0., 1. ]
+
+# body_T_cam1: !!opencv-matrix
+#    rows: 4
+#    cols: 4
+#    dt: d
+#    data: [ -1, 0, 0, -0.046,
+#             0, -1, 0, 0,
+#             0, 0, 1, 0, 0., 0., 0., 1. ]
+
+
+#Multiple thread support
+multiple_thread: 1
+
+#feature traker paprameters
+max_cnt: 150            # max feature number in feature tracking
+min_dist: 30            # min distance between two features 
+freq: 10                # frequence (Hz) of publish tracking result. At least 10Hz for good estimation. If set 0, the frequence will be same as raw image 
+F_threshold: 1.0        # ransac threshold (pixel)
+show_track: 1           # publish tracking image as topic
+flow_back: 1            # perform forward and backward optical flow to improve feature tracking accuracy
+
+#optimization parameters
+max_solver_time: 0.04  # max solver itration time (ms), to guarantee real time
+max_num_iterations: 8   # max solver itrations, to guarantee real time
+keyframe_parallax: 10.0 # keyframe selection threshold (pixel)
+
+#imu parameters       The more accurate parameters you provide, the better performance
+acc_n: 1.1478390702323595e-02          # accelerometer measurement noise standard deviation. #0.2   0.04
+gyr_n: 2.2701037456324905e-03         # gyroscope measurement noise standard deviation.     #0.05  0.004
+acc_w: 9.9239749705255288e-04         # accelerometer bias random work noise standard deviation.  #0.002
+gyr_w: 5.1604534539734845e-05       # gyroscope bias random work noise standard deviation.     #4.0e-5
+g_norm: 9.805         # gravity magnitude
+
+#unsynchronization parameters
+estimate_td: 1                      # online estimate time offset between camera and imu
+td: 0.0                             # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
+# td: 0.011952145
+
+#loop closure parameters
+load_previous_pose_graph: 0        # load and reuse previous pose graph; load from 'pose_graph_save_path'
+pose_graph_save_path: "/home/swarm/catkin_ws/src/VINS-Fusion/config/realsense_t265/output" # save and load path
+save_image: 0                   # save image in pose graph for visualization prupose; you can close this function by setting 0 

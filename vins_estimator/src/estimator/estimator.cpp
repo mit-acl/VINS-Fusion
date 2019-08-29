@@ -317,7 +317,7 @@ void Estimator::processMeasurements()
             printStatistics(*this, 0);
 
             std_msgs::Header header;
-            header.frame_id = "world";
+            header.frame_id = "vins_world";
             header.stamp = ros::Time(feature.first);
 
             pubOdometry(*this, header);

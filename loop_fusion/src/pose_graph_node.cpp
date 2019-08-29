@@ -207,7 +207,7 @@ void vio_callback(const nav_msgs::Odometry::ConstPtr &pose_msg)
 
     nav_msgs::Odometry odometry;
     odometry.header = pose_msg->header;
-    odometry.header.frame_id = "world";
+    odometry.header.frame_id = "vins_world";
     odometry.pose.pose.position.x = vio_t.x();
     odometry.pose.pose.position.y = vio_t.y();
     odometry.pose.pose.position.z = vio_t.z();

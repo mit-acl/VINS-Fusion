@@ -1,5 +1,12 @@
 <launch>
     <node name="rvizvisualisation" pkg="rviz" type="rviz" output="log" args="-d $(find vins)/../config/vins_rviz_config.rviz" />
+
+    <param name="use_sim_time" value="true" />
+    <node name="img0_republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/camera_d435i/infra1/image_rect_raw out:=/camera_d435i/infra1/image" />
+    <node name="img1_republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/camera_d435i/infra2/image_rect_raw out:=/camera_d435i/infra2/image" />
+    <node pkg="vins" type="vins_node" name="vins_node">
+        <rosparam file="/home/swarm/catkin_ws/src/VINS-Fusion/config/realsense_d435i/realsense_stereo_imu_config_3_launch.yaml" />
+    </node>
     <!-- <slerp/> -->
     <!--fast-->
     <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="vinsbody_to_viconbody" args="2.700, -3.232, 0.300 0 0 -0.7071068 0.7071068 world vins_world" /> -->
