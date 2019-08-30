@@ -53,6 +53,18 @@ Clone the repository and catkin_make:
 ```
 (if you fail in this step, try to find another computer with clean system or reinstall Ubuntu and ROS)
 
+## 3. ACL Jackal Example
+The launch file already decompresses images.
+
+### 3.1 Stereo camera + IMU
+
+```
+    roslaunch vins vins_rviz.launch
+    rosrun vins vins_node ~/catkin_ws/src/VINS-Fusion/config/realsense_d435i/realsense_stereo_imu_config_3.yaml
+    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-       Fusion/config/realsense_d435i/realsense_stereo_imu_config_3.yaml 
+    rosbag play YOUR_DATASET_FOLDER/JACKAL_BAG_FILE
+```
+
 ## 3. EuRoC Example
 Download [EuRoC MAV Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets) to YOUR_DATASET_FOLDER. Take MH_01 for example, you can run VINS-Fusion with three sensor types (monocular camera + IMU, stereo cameras + IMU and stereo cameras). 
 Open four terminals, run vins odometry, visual loop closure(optional), rviz and play the bag file respectively. 
