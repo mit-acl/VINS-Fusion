@@ -65,12 +65,12 @@ The launch file already decompresses images.
     rosbag play YOUR_DATASET_FOLDER/JACKAL_BAG_FILE
 ```
 
-## 3. EuRoC Example
+## 4.1.0 EuRoC Example
 Download [EuRoC MAV Dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets) to YOUR_DATASET_FOLDER. Take MH_01 for example, you can run VINS-Fusion with three sensor types (monocular camera + IMU, stereo cameras + IMU and stereo cameras). 
 Open four terminals, run vins odometry, visual loop closure(optional), rviz and play the bag file respectively. 
 Green path is VIO odometry; red path is odometry under visual loop closure.
 
-### 3.1 Monocualr camera + IMU
+### 4.1.1 Monocualr camera + IMU
 
 ```
     roslaunch vins vins_rviz.launch
@@ -79,7 +79,7 @@ Green path is VIO odometry; red path is odometry under visual loop closure.
     rosbag play YOUR_DATASET_FOLDER/MH_01_easy.bag
 ```
 
-### 3.2 Stereo cameras + IMU
+### 4.1.2 Stereo cameras + IMU
 
 ```
     roslaunch vins vins_rviz.launch
@@ -88,7 +88,7 @@ Green path is VIO odometry; red path is odometry under visual loop closure.
     rosbag play YOUR_DATASET_FOLDER/MH_01_easy.bag
 ```
 
-### 3.3 Stereo cameras
+### 4.1.3 Stereo cameras
 
 ```
     roslaunch vins vins_rviz.launch
@@ -100,8 +100,8 @@ Green path is VIO odometry; red path is odometry under visual loop closure.
 <img src="https://github.com/HKUST-Aerial-Robotics/VINS-Fusion/blob/master/support_files/image/euroc.gif" width = 430 height = 240 />
 
 
-## 4. KITTI Example
-### 4.1 KITTI Odometry (Stereo)
+## 4.2 KITTI Example
+### 4.2.1 KITTI Odometry (Stereo)
 Download [KITTI Odometry dataset](http://www.cvlibs.net/datasets/kitti/eval_odometry.php) to YOUR_DATASET_FOLDER. Take sequences 00 for example,
 Open two terminals, run vins and rviz respectively. 
 (We evaluated odometry on KITTI benchmark without loop closure funtion)
@@ -110,7 +110,7 @@ Open two terminals, run vins and rviz respectively.
     (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-Fusion/config/kitti_odom/kitti_config00-02.yaml
     rosrun vins kitti_odom_test ~/catkin_ws/src/VINS-Fusion/config/kitti_odom/kitti_config00-02.yaml YOUR_DATASET_FOLDER/sequences/00/ 
 ```
-### 4.2 KITTI GPS Fusion (Stereo + GPS)
+### 4.2.2 KITTI GPS Fusion (Stereo + GPS)
 Download [KITTI raw dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php) to YOUR_DATASET_FOLDER. Take [2011_10_03_drive_0027_synced](https://s3.eu-central-1.amazonaws.com/avg-kitti/raw_data/2011_10_03_drive_0027/2011_10_03_drive_0027_sync.zip) for example.
 Open three terminals, run vins, global fusion and rviz respectively. 
 Green path is VIO odometry; blue path is odometry under GPS global fusion.
