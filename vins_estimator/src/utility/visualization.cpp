@@ -134,21 +134,21 @@ void pubOdometry(const Estimator &estimator, const std_msgs::Header &header)
 
         for ( int a = 0; a < 6; a = a + 1 ) {
             if (a < 3){
-                odometry.pose.covariance[7*a] = 0.1;
+                odometry.pose.covariance[7*a] = 1000;
             }
             else{
-                odometry.pose.covariance[7*a] = 0.01;
+                odometry.pose.covariance[7*a] = 0.1;
             }   
         }
-        for ( int a = 0; a < 6; a = a + 1 ) {
-            if (a < 3){
-                odometry.twist.covariance[7*a] = 0.1;
-            }
-            else{
-                odometry.twist.covariance[7*a] = 0.01;
-            }
-        }
-        
+        // for ( int a = 0; a < 6; a = a + 1 ) {
+        //     if (a < 3){
+        //         odometry.twist.covariance[7*a] = 0.1;
+        //     }
+        //     else{
+        //         odometry.twist.covariance[7*a] = 0.01;
+        //     }
+        // }
+
         odometry.pose.pose.position.x = estimator.Ps[WINDOW_SIZE].x();
         odometry.pose.pose.position.y = estimator.Ps[WINDOW_SIZE].y();
         odometry.pose.pose.position.z = estimator.Ps[WINDOW_SIZE].z();
