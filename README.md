@@ -54,14 +54,19 @@ Clone the repository and catkin_make:
 (if you fail in this step, try to find another computer with clean system or reinstall Ubuntu and ROS)
 
 ## 3. ACL Jackal Example
-The launch file already decompresses images.
+The realsense_stereo_imu_config_3 file has the calibration for the D435i camera and its IMU. The realsense_stereo_imu_config_3 file has the calibration for the camera and the 3dm IMU (The extrinsic calibration is not very accurate and can be imporved for the 3dm).
+Aditionally, since the recorded images are usually compressed they need to be republished to a decompressed topic. The in topic is the compressed topic and the out topic is the new topic for the decompressed images to be pubslished to.
 
 ### 3.1 Stereo camera + IMU
+```
+    rosrun image_transport republish compressed in:=/camera_d435i/infra1/image_rect_raw out:=/camera_d435i/infra1/image
+    rosrun image_transport republish compressed in:=/camera_d435i/infra2/image_rect_raw out:=/camera_d435i/infra2/image
+```
 
 ```
     roslaunch vins vins_rviz.launch
     rosrun vins vins_node ~/catkin_ws/src/VINS-Fusion/config/realsense_d435i/realsense_stereo_imu_config_3.yaml
-    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-Fusion/config/realsense_d435i/realsense_stereo_imu_config_3.yaml
+    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-       Fusion/config/realsense_d435i/realsense_stereo_imu_config_3.yaml 
     rosbag play YOUR_DATASET_FOLDER/JACKAL_BAG_FILE
 ```
 
