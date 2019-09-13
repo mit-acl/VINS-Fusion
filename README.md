@@ -54,7 +54,8 @@ Clone the repository and catkin_make:
 (if you fail in this step, try to find another computer with clean system or reinstall Ubuntu and ROS)
 
 ## 3. ACL Jackal Example
-The realsense_stereo_imu_config_3 file has the calibration for the D435i camera and its IMU. The realsense_stereo_imu_config_3 file has the calibration for the camera and the 3dm IMU (The extrinsic calibration is not very accurate and can be imporved for the 3dm).
+The realsense_stereo_imu_config_3 file has the calibration for the D435i camera and its IMU. The realsense_stereo_imu_config_4 file has the calibration for the camera and the 3dm IMU (The extrinsic calibration is not very accurate and can be imporved for the 3dm). The intrinsic calibration variables are generated with Kalibr using the Pinhole-radtan camera and distortion model. 
+
 Aditionally, since the recorded images are usually compressed they need to be republished to a decompressed topic. The in topic is the compressed topic and the out topic is the new topic for the decompressed images to be pubslished to.
 
 ### 3.1 Stereo camera + IMU
