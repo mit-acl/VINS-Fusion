@@ -61,7 +61,7 @@ The launch file already decompresses images.
 ```
     roslaunch vins vins_rviz.launch
     rosrun vins vins_node ~/catkin_ws/src/VINS-Fusion/config/realsense_d435i/realsense_stereo_imu_config_3.yaml
-    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-       Fusion/config/realsense_d435i/realsense_stereo_imu_config_3.yaml 
+    (optional) rosrun loop_fusion loop_fusion_node ~/catkin_ws/src/VINS-Fusion/config/realsense_d435i/realsense_stereo_imu_config_3.yamlFusion/config/realsense_d435i/realsense_stereo_imu_config_3.yaml
     rosbag play YOUR_DATASET_FOLDER/JACKAL_BAG_FILE
 ```
 
