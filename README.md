@@ -41,12 +41,31 @@ ROS Kinetic or Melodic. [ROS Installation](http://wiki.ros.org/ROS/Installation)
 ### 1.2. **Ceres Solver**
 Follow [Ceres Installation](http://ceres-solver.org/installation.html).
 
+Summary:
+```bash
+# Dependencies (likely have them all already)
+sudo apt install -y cmake libgoogle-glog-dev libgflags-dev libatlas-base-dev libsuitesparse-dev
+
+# Eigen 3.3.7
+wget -O eigen.zip https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.zip
+unzip eigen.zip
+cd eigen-3.3.7 && mkdir eigen-build && cd eigen-build
+cmake .. && sudo make install
+
+# Ceres solver (latest stable release 2.0.0)
+wget -O ceres.tar.gz http://ceres-solver.org/ceres-solver-2.0.0.tar.gz
+tar zxf ceres.tar.gz
+cd ceres-solver-2.0.0 && mkdir ceres-bin && cd ceres-bin
+cmake .. && make -j8
+make test
+sudo make install
+```
 
 ## 2. Build VINS-Fusion
 Clone the repository and catkin_make:
 ```
     cd ~/catkin_ws/src
-    git clone https://github.com/HKUST-Aerial-Robotics/VINS-Fusion.git
+    git clone https://github.com/mit-acl/VINS-Fusion.git
     cd ../
     catkin_make
     source ~/catkin_ws/devel/setup.bash
